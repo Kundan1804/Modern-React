@@ -3,6 +3,8 @@ import Accordian from "./components/Accordian";
 import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
 import Translate from "./components/Translate";
+import Route from "./components/Route";
+import Header from "./components/Header";
 
 const items = [
   {
@@ -34,19 +36,62 @@ const options = [
   },
 ]
 
+// const showAccordian = () => {
+//   if (window.location.pathname === '/') {
+//     return <Accordian items={items} />;
+//   }
+// };
+// const showList = () => {
+//   if (window.location.pathname === '/list') {
+//     return <Search />;
+//   }
+// };
+// const showDropdown = () => {
+//   if (window.location.pathname === '/dropdown') {
+//     return <Dropdown />;
+//   }
+// };
+// const showTranslate = () => {
+//   if (window.location.pathname === '/translate') {
+//     return <Translate />;
+//   }
+// };
+
 function App() {
   const [selected, setSelected] = useState(options[0])
 
   return (
     <div className="App">
-      {/* <Accordian items={items}/> */}
-      {/* <Search /> */}
-      {/* <Dropdown
+      {/* <Accordian items={items}/>
+      <Search />
+      <Dropdown
         options={options}
         selected={selected}
         onSelectedChange={setSelected}
-      /> */}
-      <Translate />
+      />
+      <Translate /> */}
+      {/* {showAccordian()}
+      {showList()}
+      {showDropdown()}
+      {showTranslate()} */}
+      <Header />
+      <Route path="/">
+        <Accordian items={items} />
+      </Route>
+      <Route path="/list">
+        <Search />
+      </Route>
+      <Route path="/dropdown">
+        <Dropdown
+          label=" Select a Color"
+          options={options}
+          selected={selected}
+          onSelectedChange={setSelected}
+        />
+      </Route>
+      <Route path="/translate">
+        <Translate />
+      </Route>
     </div>
   );
 }
